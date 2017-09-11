@@ -1,9 +1,11 @@
 var request = require('request');
 var fs = require('fs');
 
-
+//intiates program
 console.log('Welcome to the GitHub Avatar Downloader!');
 
+
+//gets repo contributors
 function getRepoContributors(repoOwner, repoName, cb) {
   var options = {
     url: 'https://api.github.com/repos/'+repoOwner+'/'+repoName+'/contributors',
@@ -15,15 +17,13 @@ function getRepoContributors(repoOwner, repoName, cb) {
     if (error){
       console.log("there was a error!! \n", error);
     }
-    var hold = JSON.parse(body);
-    // console.log(hold);
-    //*************************************************************
+    hold = JSON.parse(body);
+    //cycle through and download avatars
     for(var users of hold) {
       downloadImageByURL(users.avatar_url, "./avatar-pics/" + users.login)
       console.log(users.avatar_url);
     }
   })
-
 }
 
 
@@ -44,8 +44,10 @@ var args = process.argv.slice(2);
 if (args.length < 2) {
   console.log("termination")
 } else {
+  //get user inputs
   let repoOwner = args[0];
   let repoName = args[1];
+  //give user inputs to function
   getRepoContributors(repoOwner, repoName, function(err, result) {
     console.log("Errors:", err);
   });
