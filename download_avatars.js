@@ -1,14 +1,17 @@
 var request = require('request');
 var fs = require('fs');
+require('dotenv').config();
 
 //intiates program
 console.log('Welcome to the GitHub Avatar Downloader!');
+var GITHUB_USER = process.env.DB_USER;
+var GITHUB_TOKEN = process.env.API_KEY;
 
 
 //gets repo contributors
 function getRepoContributors(repoOwner, repoName, cb) {
   var options = {
-    url: 'https://api.github.com/repos/'+repoOwner+'/'+repoName+'/contributors',
+    url: 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors',
     headers: {
       'User-Agent': 'NicholasSmilovic'
     }
