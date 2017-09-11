@@ -18,7 +18,11 @@ function getRepoContributors(repoOwner, repoName, cb) {
     if (error){
       console.log("there was a error!! \n", error);
     }
-    console.log("body: ", JSON.parse(body));
+    var hold = JSON.parse(body);
+    console.log(hold);
+    for(var users of hold) {
+      console.log(users.avatar_url);
+    }
   })
 
 }
