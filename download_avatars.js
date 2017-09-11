@@ -19,8 +19,10 @@ function getRepoContributors(repoOwner, repoName, cb) {
       console.log("there was a error!! \n", error);
     }
     var hold = JSON.parse(body);
-    console.log(hold);
+    // console.log(hold);
+    //*************************************************************
     for(var users of hold) {
+      downloadImageByURL(users.avatar_url, "./avatar-pics/" + users.login)
       console.log(users.avatar_url);
     }
   })
@@ -41,10 +43,10 @@ function downloadImageByURL(url, filePath) {
 
 }
 
-downloadImageByURL("https://avatars2.githubusercontent.com/u/141167?v=4", "./downloaded.jpg");
+// downloadImageByURL("https://avatars2.githubusercontent.com/u/141167?v=4", "./downloaded.jpg");
 
-// getRepoContributors("jquery", "jquery", function(err, result) {
-//   console.log("Errors:", err);
-//   console.log("Result:", result);
-//   console.log("body:", body);
-// });
+getRepoContributors("jquery", "jquery", function(err, result) {
+  console.log("Errors:", err);
+  // console.log("Result:", result);
+  // console.log("body:", body);
+});
